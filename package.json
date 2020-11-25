@@ -1,0 +1,27 @@
+{
+  "name": "wakatime-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node src/index.ts"
+  },
+  "bin": {
+    "wakatime-cli": "dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.9",
+    "@types/node-fetch": "^2.5.7",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "as-table": "^1.0.55",
+    "chalk": "^4.1.0",
+    "commander": "^6.2.0",
+    "node-fetch": "^2.6.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
