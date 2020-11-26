@@ -27,20 +27,24 @@ This is an example of how to list things you need to use the software and how to
 
 ## 🧬 Usage
 
-Options:
+- #### Options:
 
 ```sh
 ❯ wakatime-cli -h
 Usage: wakatime-cli [options]
 
 Options:
-  -v, --vers           output the current version
-  -k, --apiKey <type>  Enter Your Wakatime APIKEY
-  -r, --remove         Remove Your saved API_KEY
-  -l, --language       Coding Data of Languages in Last 7days
-  -a, --all            All Time Since Today
-  -h, --help           display help for command
+  -v, --vers              output the current version
+  -k, --apiKey <type>     Enter Your Wakatime APIKEY
+  -r, --remove            Remove Your saved API_KEY
+  -l, --language          Coding Data of Languages in Last 7days
+  -a, --all               All Time Since Today
+  -g, --goals             Coding Goals Meet If Set Up
+  -d, --dashboard <type>  Coding Dashboard of Specific Duration
+  -h, --help              display help for command
 ```
+
+- #### Save API-KEY
 
 Copy Your `Wakatime APIKEY`:
 
@@ -56,7 +60,9 @@ If it's Saved it should show this:
 
 Now that it's Saved You can get your Wakatime Stats Rightaway🚀
 
-- Gives Stats of Language of last 7days
+- #### Language Stats
+
+Gives Stats of Language of last 7days
 
 ```sh
 wakatime-cli -l
@@ -64,7 +70,7 @@ wakatime-cli -l
 
 <img src="media/lang.png" alt="Logo" width="300" >
 
-- Gives Cumulative Coding Time
+- #### Gives Cumulative Coding Time
 
 ```sh
 wakatime-cli -a
@@ -72,7 +78,31 @@ wakatime-cli -a
 
 <img src="media/all.png" alt="Logo" width="300" >
 
-- Remove the Saved API-KEY
+- #### Dashboard
+
+```
+wakatime-cli -d <type>
+```
+
+`<type>` MUST be one of the following:
+-last_7_days
+-last_30_days
+-last_6_months
+-last_year
+
+<img src="media/dash.png" alt="Logo" width="300" >
+
+- #### Coding Goals
+
+You must have Coding Goals Enabled For this:
+
+```
+wakatime-cli -g
+```
+
+<img src="media/goal.png" alt="Logo" width="300" >
+
+- #### Remove the Saved API-KEY
 
 ```sh
 wakatime-cli -r

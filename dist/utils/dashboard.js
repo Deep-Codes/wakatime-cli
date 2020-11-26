@@ -5,13 +5,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dashboard = void 0;
 const as_table_1 = __importDefault(require("as-table"));
+const cli_spinner_1 = require("cli-spinner");
 const node_fetch_1 = __importDefault(require("node-fetch"));
 const color_1 = require("./color");
 const handleDate_1 = require("./handleDate");
 let editorArr = [];
 let langArr = [];
 exports.dashboard = (apikey, duration) => {
+    let spin = new cli_spinner_1.Spinner('Fetching Data .. %s');
     const fetchRawData = async () => {
+        spin.start();
         const dashBoardUrl = `https://wakatime.com/api/v1/users/current/stats/${duration}`;
         const rawData = await node_fetch_1.default(`${dashBoardUrl}?api_key=${apikey}`)
             .then((res) => res.json())
@@ -35,6 +38,7 @@ exports.dashboard = (apikey, duration) => {
             };
             editorArr.push(tempObj);
         });
+        spin.stop();
         console.log(color_1.headText('\nDASHBOARD FOR LAST 7DAYS \n'));
         console.log(`Weekly Stats : ${color_1.purpleText(rawData['data']['categories'][0]['text'])}\n`);
         console.log(`Best Day : ${handleDate_1.handleDate(rawData['data']['best_day']['created_at'])}`);

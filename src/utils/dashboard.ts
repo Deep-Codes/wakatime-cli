@@ -1,4 +1,5 @@
 import asTable from 'as-table';
+import { Spinner } from 'cli-spinner';
 import fetch from 'node-fetch';
 import { blueText, greenText, headText, pinkText, purpleText, redText } from './color';
 import { handleDate } from './handleDate';
@@ -19,7 +20,9 @@ let langArr: Array<any> = [];
 
 
 export const dashboard = (apikey: string, duration : string) => {
+  let spin = new Spinner('Fetching Data .. %s');
   const fetchRawData = async (): Promise<void> => {
+    spin.start();
     const dashBoardUrl = `https://wakatime.com/api/v1/users/current/stats/${duration}`;
     const rawData = await fetch(`${dashBoardUrl}?api_key=${apikey}`)
       .then((res) => res.json())
@@ -49,6 +52,8 @@ export const dashboard = (apikey: string, duration : string) => {
         }
         editorArr.push(tempObj);
       })
+
+    spin.stop();
 
     console.log(headText('\nDASHBOARD FOR LAST 7DAYS \n'));
     console.log(`Weekly Stats : ${purpleText(rawData['data']['categories'][0]['text'])}\n`)
