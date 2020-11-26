@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import asTable from 'as-table';
-import { greenText, purpleText, pinkText } from './color';
+import { greenText, purpleText, pinkText, redText } from './color';
+import { Spinner } from 'cli-spinner';
 
 
 interface WeeklyLang {
@@ -9,14 +10,15 @@ interface WeeklyLang {
   percent: number 
 }
 export const weeklyLanguageData = (apikey: string) => {
+  let spin = new Spinner('Fetching Data .. %s');
   let finalArr: Array<any> = [];
   const weeklyDataUrl =
     'https://wakatime.com/api/v1/users/current/stats/last_7_days';
   const fetchRawData = async (): Promise<void> => {
-    console.log('Fetching Data');
+    spin.start();
     const rawData = await fetch(`${weeklyDataUrl}?api_key=${apikey}`)
       .then((res) => res.json())
-      .catch((err) => console.log(err.message));
+      .catch((err) => console.log(redText(err.message)));
     rawData['data']['languages'].forEach((lang: any) => {
       let { text  ,name  ,percent  } :  WeeklyLang = lang;
       let tempObj = {
@@ -26,7 +28,10 @@ export const weeklyLanguageData = (apikey: string) => {
       }
       finalArr.push(tempObj);
     });
+    spin.stop();
+    console.log('\n\n')
     console.log(asTable(finalArr))
+    console.log('\n\n')
   };
   fetchRawData();
 };

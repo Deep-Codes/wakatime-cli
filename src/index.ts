@@ -4,6 +4,7 @@ import path from 'path';
 import fs from 'fs';
 import { allTimeSinceToday } from './utils/allTimeSinceToday';
 import { weeklyLanguageData } from './utils/weeklyLanguageData';
+import { blueText, greenText, pinkText, redText } from './utils/color';
 
 program.version('1.0.0', '-v, --vers', 'output the current version');
 program
@@ -17,7 +18,7 @@ program.parse(process.argv);
 // ? ALl time since today
 // ? weekly
 
-console.log('Hello from WakaTime-CLI');
+console.log(blueText('\nHello from WakaTime-CLI'));
 
 let API_KEY: string | undefined;
 
@@ -36,9 +37,9 @@ if (API_KEY && !program.remove) {
   // ? writeFileSync to save API KEY
   if (program.apiKey) {
     fs.writeFileSync(path.join(__dirname, 'utils/apikey.txt'), program.apiKey);
-    console.log('API-KEY Saved !');
+    console.log(greenText('API-KEY Saved !\n'));
   } else {
-    console.log('Save Your API-KEY with > wakatime-cli -a <API_KEY>');
+    console.log(greenText('Save Your API-KEY with > wakatime-cli -k <API_KEY>\n'));
   }
 }
 
@@ -46,8 +47,8 @@ if (program.remove) {
   // ? Removes Existing Key
   if (API_KEY) {
     fs.writeFileSync(path.join(__dirname, 'utils/apikey.txt'), '');
-    console.log('API KEY Removed You will need to it again .');
+    console.log(pinkText('API KEY Removed You will need to add  it again .'));
   } else {
-    console.log('NO API KEY FOUND TO BE DELETED');
+    console.log(redText('NO API KEY FOUND TO BE DELETED'));
   }
 }
