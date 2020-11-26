@@ -1,6 +1,6 @@
 {
   "name": "@deepcodes/wakatime-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get Wakatime stats in your terminal",
   "main": "index.js",
   "homepage": "https://github.com/Deep-Codes/wakatime-cli#readme",
@@ -26,7 +26,10 @@
     "node-fetch": "^2.6.1"
   },
   "keywords": [
-    "wakatime","wakatime-tool","coding stats","statistics"
+    "wakatime",
+    "wakatime-tool",
+    "coding stats",
+    "statistics"
   ],
   "author": "Deepankar Bhade",
   "license": "MIT"
