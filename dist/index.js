@@ -11,13 +11,16 @@ const allTimeSinceToday_1 = require("./utils/allTimeSinceToday");
 const weeklyLanguageData_1 = require("./utils/weeklyLanguageData");
 const color_1 = require("./utils/color");
 const codingGoals_1 = require("./utils/codingGoals");
+const dashboard_1 = require("./utils/dashboard");
+const validDurationType_1 = require("./utils/validDurationType");
 commander_1.program.version('1.0.0', '-v, --vers', 'output the current version');
 commander_1.program
     .option('-k, --apiKey <type>', 'Enter Your Wakatime APIKEY')
     .option('-r, --remove ', 'Remove Your saved API_KEY')
     .option('-l, --language ', 'Coding Data of Languages in Last 7days')
     .option('-a, --all ', 'All Time Since Today')
-    .option('-g, --goals', 'Coding Goals Meet If Set Up');
+    .option('-g, --goals', 'Coding Goals Meet If Set Up')
+    .option('-d, --dashboard <type>', 'Coding Dashboard of Specific Duration');
 commander_1.program.parse(process.argv);
 // * End Points
 // ? ALl time since today
@@ -38,6 +41,16 @@ if (API_KEY && !commander_1.program.remove) {
     }
     else if (commander_1.program.goals) {
         codingGoals_1.codingGoals(API_KEY);
+    }
+    else if (commander_1.program.dashboard) {
+        if (validDurationType_1.validDuration.includes(commander_1.program.dashboard)) {
+            dashboard_1.dashboard(API_KEY, commander_1.program.dashboard);
+        }
+        else {
+            console.log(color_1.redText('Enter as Valid Duration \n'));
+            console.log(color_1.redText('It should be one of the Following: \n'));
+            console.log(color_1.redText('last_7_days, last_30_days, last_6_months,last_year\n'));
+        }
     }
 }
 else if (API_KEY === '' && !commander_1.program.remove) {

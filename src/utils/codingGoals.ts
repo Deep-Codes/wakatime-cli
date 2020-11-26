@@ -12,6 +12,7 @@ interface Goals {
   actual_seconds_text: string
 }
 
+
 let finalArr: Array<any> = [];
 
 export const codingGoals = (apikey: string) => {
