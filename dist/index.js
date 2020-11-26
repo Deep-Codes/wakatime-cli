@@ -10,12 +10,14 @@ const fs_1 = __importDefault(require("fs"));
 const allTimeSinceToday_1 = require("./utils/allTimeSinceToday");
 const weeklyLanguageData_1 = require("./utils/weeklyLanguageData");
 const color_1 = require("./utils/color");
+const codingGoals_1 = require("./utils/codingGoals");
 commander_1.program.version('1.0.0', '-v, --vers', 'output the current version');
 commander_1.program
     .option('-k, --apiKey <type>', 'Enter Your Wakatime APIKEY')
     .option('-r, --remove ', 'Remove Your saved API_KEY')
     .option('-l, --language ', 'Coding Data of Languages in Last 7days')
-    .option('-a, --all ', 'All Time Since Today');
+    .option('-a, --all ', 'All Time Since Today')
+    .option('-g, --goals', 'Coding Goals Meet If Set Up');
 commander_1.program.parse(process.argv);
 // * End Points
 // ? ALl time since today
@@ -33,6 +35,9 @@ if (API_KEY && !commander_1.program.remove) {
     }
     else if (commander_1.program.language) {
         weeklyLanguageData_1.weeklyLanguageData(API_KEY);
+    }
+    else if (commander_1.program.goals) {
+        codingGoals_1.codingGoals(API_KEY);
     }
 }
 else if (API_KEY === '' && !commander_1.program.remove) {

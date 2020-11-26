@@ -70,9 +70,18 @@ wakatime-cli -l
 wakatime-cli -a
 ```
 
+<img src="media/all.png" alt="Logo" width="300" >
+
+- Remove the Saved API-KEY
+
+```sh
+wakatime-cli -r
+```
+
+<img src="media/rm.png" alt="Logo" width="400" >
+
 More Feature Will be Added Soon.
 If you need some Feel Free to Open an Issue.
-<img src="media/all.png" alt="Logo" width="300" >
 
 ## 🏗Contributing
 

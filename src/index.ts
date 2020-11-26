@@ -5,6 +5,7 @@ import fs from 'fs';
 import { allTimeSinceToday } from './utils/allTimeSinceToday';
 import { weeklyLanguageData } from './utils/weeklyLanguageData';
 import { blueText, greenText, pinkText, redText } from './utils/color';
+import { codingGoals } from './utils/codingGoals';
 
 program.version('1.0.0', '-v, --vers', 'output the current version');
 program
@@ -12,6 +13,7 @@ program
   .option('-r, --remove ', 'Remove Your saved API_KEY')
   .option('-l, --language ', 'Coding Data of Languages in Last 7days')
   .option('-a, --all ', 'All Time Since Today')
+  .option('-g, --goals' , 'Coding Goals Meet If Set Up');
 program.parse(process.argv);
 
 // * End Points
@@ -32,6 +34,8 @@ if (API_KEY && !program.remove) {
     allTimeSinceToday(API_KEY);
   }else if(program.language){
     weeklyLanguageData(API_KEY)
+  }else if(program.goals){
+    codingGoals(API_KEY);
   }
 } else if (API_KEY === '' && !program.remove) {
   // ? writeFileSync to save API KEY
