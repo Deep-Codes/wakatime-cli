@@ -12,8 +12,13 @@ export const allTimeSinceToday = (apikey :string ) => {
       .then((res) => res.json())
       .catch((err) => console.log(redText(err.message)));
       spin.stop();
-    console.log(headText('\nALL TIME SINCE TODAY :\n'))
-    console.log(greenText(`CODING TIME: ${rawData['data']['text']}\n`))
+    // if request doesnt work the 1st time 
+    if(rawData['data']['is_up_to_date']){
+      console.log(headText('\nALL TIME SINCE TODAY :\n'))
+      console.log(greenText(`CODING TIME: ${rawData['data']['text']}\n`))
+    }else{
+      console.log(redText('Your stats will be refreshed soon : Try it again .'))
+    }
   };
   fetchRawData();
 }
