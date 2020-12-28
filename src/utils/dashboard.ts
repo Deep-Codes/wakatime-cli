@@ -60,9 +60,9 @@ export const dashboard = (apikey: string, duration: string) => {
 
       spin.stop();
 
-      console.log(headText('\nDASHBOARD FOR LAST 7DAYS \n'));
+      console.log(headText('\nDASHBOARD : \n'));
       console.log(
-        `Weekly Stats : ${purpleText(
+        `Your Stats : ${purpleText(
           rawData['data']['categories'][0]['text']
         )}\n`
       );
